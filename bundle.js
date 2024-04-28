@@ -6930,6 +6930,8 @@
         constructor(t) {
             super(),
             this.m_off = t
+            //fix me
+            this.onClickFree()
         }
         onAwake() {
             super.onAwake(),

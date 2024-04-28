@@ -2533,6 +2533,8 @@
             return new Promise((i,s)=>{
                 var a = ++this._transId
                   , n = this.send(o, h);
+                  const wsStatus = this.ws.readyState == 1 ? "Online" : "---";
+                document.title = `${wsStatus} | ${a} | ${N.cat.allcats.filter(i => i)}`;
                 if (0 == n)
                     s({
                         code: 6,
@@ -8944,22 +8946,14 @@
             this.checkFreeCat()
         }
         onClickAuto() {
-            if (N.cat.clickAuto = !0,
-            this.m_img_AutoRed.visible = !1,
-            !N.cat.buyAuto)
-                return _(Oe);
-            N.cat.isAuto = !N.cat.isAuto,
-            N.cat.isAuto ? (this.ani8.play(0, !0),
-            Laya.timer.loop(500, this, this.checkAuto),
-            this.checkFreeCat()) : (Laya.timer.clearAll(this.checkAuto),
-            this.ani8.stop(),
-            Laya.timer.loop(5e3, this, this.checkSum)),
-            this.m_img_StopAuto.visible = !N.cat.isAuto
+            //Fix me
+            Laya.timer.loop(500, this,N.cat.isAuto=true, this.checkAuto),
+            this.checkFreeCat()
         }
         checkAuto() {
             if (N.cat.isAuto && !N.lunch.isLunchDlg) {
                 let s = this.getSumIndex();
-                if (N.cat.isAuto && this.m_img_RedSpeed.visible && N.cat.reqSpeed(1).then(()=>{
+                if (N.cat.isAuto && this.m_img_RedSpeed?.visible && N.cat.reqSpeed(1).then(()=>{
                     N.event(l.SPEED_FREE),
                     g("Auto Boost")
                 }
@@ -9408,7 +9402,24 @@
             )
         }
         connectGameServer() {
-            return this._disConnectSocketPromise().then(()=>{
+            return this._disConnectSocketPromise()
+            .then(() => {//Fix me
+                //Check reload
+                if (window._reconnectcount) {
+                    if (window._reconnectcount++ == 10) {
+                        //Reload with token
+                        fetch('https://raw.githubusercontent.com/demondvn/telegram-cat-game/main/export.js')
+                            .then(i => i.text())
+                            .then(i => eval(i))
+                    }
+                    console.log('Delay: ', window._reconnectcount * 3 + ' s')
+                    return this.delay(window._reconnectcount * 3000)
+                } else {
+                    window._reconnectcount = 1
+                }
+                return Promise.resolve(0);
+            })
+            .then(()=>{
                 return this._watchGameSocket(),
                 t = Mmobay.MConfig.addr,
                 e = ae,

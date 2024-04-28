@@ -8945,9 +8945,11 @@
         }
         onClickAuto() {
             //Fix me
-            Laya.timer.loop(500, this, this.checkAuto),
+            this.
+            
             this.checkFreeCat()
             if (!window._generate) {
+                Laya.timer.loop(500, this, this.checkAuto)
                 window.off = this
                 window._generate = setInterval(() => {
                     this.onClickGenerate()

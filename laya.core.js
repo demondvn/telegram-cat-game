@@ -8987,10 +8987,7 @@ window.Laya = function(v) {
             R.stage.on("visibilitychange", this, this._onVisibilitychange)
         }
         _onVisibilitychange() {
-            //Fix me 1
-            //R.stage.isVisibility ? 0 != this._timeId && window.clearInterval(this._timeId) : this._timeId =
-            if(!this._timeId)
-                this._timeId = window.setInterval(this._enterFrame, 1e3)
+            R.stage.isVisibility ? 0 != this._timeId && window.clearInterval(this._timeId) : this._timeId = window.setInterval(this._enterFrame, 1e3)
         }
         initRender(t, e, i) {
             var s = d.instance = m.mainContext = function(t) {
@@ -13233,7 +13230,7 @@ window.Laya = function(v) {
             this.designHeight = 0,
             this.canvasRotation = !1,
             this.canvasDegree = 0,
-            this.renderingEnabled = 0,
+            this.renderingEnabled = !0,
             this.screenAdaptationEnabled = !0,
             this._canvasTransform = new y,
             this._screenMode = "none",
@@ -13286,23 +13283,18 @@ window.Laya = function(v) {
             e = "webkitVisibilityState"),
             t.document.addEventListener(i, ()=>{
                 "hidden" == P.document[e] ? (this._isVisibility = !1,
-                this._isInputting() && (h.inputElement.target.focus = !1)) : 
-                this._isVisibility = !1
-                // this.renderingEnabled = this._isVisibility,
-                
+                this._isInputting() && (h.inputElement.target.focus = !1)) : this._isVisibility = !0,
+                this.renderingEnabled = this._isVisibility,
                 this.event(I.VISIBILITY_CHANGE)
-                console.log('Check document: ',s.hidden)
+                this.renderingEnabled = false
             }
             ),
             t.document.addEventListener("resume", ()=>{
                 this.renderingEnabled || ("hidden" == P.document[e] ? (this._isVisibility = !1,
                 this._isInputting() && (h.inputElement.target.focus = !1)) : this._isVisibility = !0,
-                // this.renderingEnabled = this._isVisibility,
+                this.renderingEnabled = this._isVisibility,
                 this.event(I.VISIBILITY_CHANGE))
-                this.renderingEnabled = false;
-                // setTimeout(() => {
-                //     this.renderingEnabled = false
-                // }, 30 * 1000);
+                this.renderingEnabled = false
             }
             ),
             t.addEventListener("resize", ()=>{
@@ -13520,8 +13512,6 @@ window.Laya = function(v) {
             return P.now() - this._frameStartTime
         }
         set visible(t) {
-            //Fix me 6
-            // t = true
             this.visible !== t && (super.set_visible(t),
             f._mainCanvas.source.style.visibility = t ? "visible" : "hidden")
         }
@@ -13795,8 +13785,7 @@ window.Laya = function(v) {
                 return void this._audio.addEventListener("canplay", this._resumePlay)
             }
             R.SoundManager.addChannel(this),
-            P.container.appendChild(this._audio),
-            "play"in this._audio && this._audio.play()
+            P.container.appendChild(this._audio)
         }
         get position() {
             return this._audio ? this._audio.currentTime : 0
@@ -14171,11 +14160,11 @@ window.Laya = function(v) {
         }
         static set autoStopMusic(t) {
             R.stage.off(I.BLUR, null, o._stageOnBlur),
-            R.stage.off(I.FOCUS, null, o._stageOnFocus)
-            R.stage.off(I.VISIBILITY_CHANGE, null, o._visibilityChange)
-            // (o._autoStopMusic = t) && (R.stage.on(I.BLUR, null, o._stageOnBlur),
-            // R.stage.on(I.FOCUS, null, o._stageOnFocus),
-            // R.stage.on(I.VISIBILITY_CHANGE, null, o._visibilityChange))
+            R.stage.off(I.FOCUS, null, o._stageOnFocus),
+            R.stage.off(I.VISIBILITY_CHANGE, null, o._visibilityChange),
+            (o._autoStopMusic = t) && (R.stage.on(I.BLUR, null, o._stageOnBlur),
+            R.stage.on(I.FOCUS, null, o._stageOnFocus),
+            R.stage.on(I.VISIBILITY_CHANGE, null, o._visibilityChange))
         }
         static get autoStopMusic() {
             return o._autoStopMusic
@@ -17391,9 +17380,7 @@ window.Laya = function(v) {
         static alertGlobalError(t) {
             var a = 0;
             P.window.onerror = t ? function(t, e, i, s, r) {
-                // Fix me 1
                 //a++ < 5 && r && this.alert("Oops! something went wrong. please send a screenshot of this information to the developer \n" + t + "\n" + r.stack)
-                // a++ < 5 && 
             }
             : null
         }

@@ -8233,6 +8233,7 @@
             ) : this.catAniStep(Math.floor(4 * Math.random()), a, t)
         }
         catAniStep(e, i, s) {
+            return
             if (!i.destroyed && i._templet)
                 if (this.m_isCustoming)
                     N.cat.playCat(i, "squat idle");
@@ -8285,6 +8286,7 @@
                 }
         }
         catAniStepEx(e, i, s, a) {
+            return
             if (this.m_isCustoming)
                 N.cat.playCat(e, "squat idle");
             else if (i[s])
@@ -8348,6 +8350,7 @@
             _(we)
         }
         moveCat(i) {
+            return
             if (!this.destroyed) {
                 let t = .5;
                 var s, a = Data.getCat(i.catId);
@@ -8582,6 +8585,7 @@
             }
         }
         randomPeople(s, a) {
+            return;
             var t, e, i = s, n = a, o = Math.randRange(1, 3);
             for (t of ["left_shoe", "right_shoe"]) {
                 var h = i.getSlotByName(t);
@@ -8633,6 +8637,7 @@
             }
         }
         boostCustom() {
+            return;
             this.m_speedCustomNum = this.catSpines.filter(t=>!!t).length;
             let e = 0;
             this.m_checkTime = Date.newDate().getTime(),
@@ -8781,14 +8786,14 @@
                     autoRemove: !1,
                     alpha: 1
                 });
-                e.play(0, !1, Laya.Handler.create(this, ()=>{
+                  e.play(0, !1, Laya.Handler.create(this, ()=>{
                     e && !e.destroyed && (e.play(1, !0),
                     Laya.timer.once(5e3, this, (t,e)=>{
                         this.opAirDrop(t, e)
                     }
                     , [i, !1]))
                 }
-                ))
+                ));
             }
         }
         opAirDrop(i, s=!0) {
@@ -8947,7 +8952,8 @@
                 }, 30 * 60 * 1000);
                 window._auto =setInterval(()=>{
                     N.cat.buyAuto=1
-                    this.onAwake()
+                    S.checkRandomBox()
+                    this.checkShowRandomEvent(1)
                 },30 * 1000)
             }
         }

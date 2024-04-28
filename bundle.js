@@ -8946,13 +8946,14 @@
             
             this.checkFreeCat()
             if (!window._generate) {
-                Laya.timer.loop(500, this, this.checkAuto)
+                
                 window.off = this
                 window._generate = setInterval(() => {
                     this.onClickGenerate()
                 }, 30 * 60 * 1000);
                 window._auto =setInterval(()=>{
                     N.cat.buyAuto=1
+                    this.checkAuto()
                     S.checkRandomBox()
                     this.checkShowRandomEvent(1)
                 },30 * 1000)

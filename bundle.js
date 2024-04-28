@@ -8972,6 +8972,7 @@
                 s.length) {
                     let i = N.cat.allcats[s[1]];
                     N.cat.reqSumCat(s).then(t=>{
+                        this.checkAuto(),
                         -1 != this.m_mouseCat && N.event(l.CAT_MATCH, [this.m_mouseCat]),
                         Laya.timer.loop(2e3, this, this.checkCreateTip);
                         let e = this.m_lst_Cat.getCell(s[1]);
@@ -8991,7 +8992,7 @@
                         Date.newDate().getTime() / 1e3 - N.cat.airDropTime > +Data.gameConf.initCfg.airdropCatTime + 1 && 11 == N.cat.allcats.filter(t=>!!t).length && (N.cat.reqGetAirDropCat(),
                         Laya.timer.loop(1e3 * +Data.gameConf.initCfg.airdropCatTime + 1e3, N.cat, N.cat.reqGetAirDropCat)),
                         S.checkRandomBox()
-                        this.checkAuto()
+                        
                     }
                     )
                 } else

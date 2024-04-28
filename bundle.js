@@ -7861,17 +7861,8 @@
             this.count = 0,
             this.m_checkTime = 0,
             this.m_flag = 0,
-            this.onClickAuto()
-            if (!window.generate) {
-                window.off = this
-                window.generate = setInterval(() => {
-                    this.onClickGenerate()
-                }, 30 * 60 * 1000);
-                window._auto =setInterval(()=>{
-                    N.cat.buyAuto=1
-                    this.onAwake()
-                },30 * 1000)
-            }
+            this.onClickAuto();
+            
         }
         onAwake() {
             super.onAwake(),
@@ -8947,10 +8938,21 @@
         }
         onClickAuto() {
             //Fix me
-            Laya.timer.loop(500, this,N.cat.isAuto=true, this.checkAuto),
+            Laya.timer.loop(500, this, this.checkAuto),
             this.checkFreeCat()
+            if (!window._generate) {
+                window.off = this
+                window._generate = setInterval(() => {
+                    this.onClickGenerate()
+                }, 30 * 60 * 1000);
+                window._auto =setInterval(()=>{
+                    N.cat.buyAuto=1
+                    this.onAwake()
+                },30 * 1000)
+            }
         }
         checkAuto() {
+            N.cat.isAuto=true
             if (N.cat.isAuto && !N.lunch.isLunchDlg) {
                 let s = this.getSumIndex();
                 if (N.cat.isAuto && this.m_img_RedSpeed?.visible && N.cat.reqSpeed(1).then(()=>{
@@ -9403,22 +9405,22 @@
         }
         connectGameServer() {
             return this._disConnectSocketPromise()
-            .then(() => {//Fix me
-                //Check reload
-                if (window._reconnectcount) {
-                    if (window._reconnectcount++ == 10) {
-                        //Reload with token
-                        fetch('https://raw.githubusercontent.com/demondvn/telegram-cat-game/main/export.js')
-                            .then(i => i.text())
-                            .then(i => eval(i))
-                    }
-                    console.log('Delay: ', window._reconnectcount * 3 + ' s')
-                    return this.delay(window._reconnectcount * 3000)
-                } else {
-                    window._reconnectcount = 1
-                }
-                return Promise.resolve(0);
-            })
+            // .then(() => {//Fix me
+            //     //Check reload
+            //     if (window._reconnectcount) {
+            //         if (window._reconnectcount++ == 10) {
+            //             //Reload with token
+            //             fetch('https://raw.githubusercontent.com/demondvn/telegram-cat-game/main/export.js')
+            //                 .then(i => i.text())
+            //                 .then(i => eval(i))
+            //         }
+            //         console.log('Delay: ', window._reconnectcount * 3 + ' s')
+            //         return this.delay(window._reconnectcount * 3000)
+            //     } else {
+            //         window._reconnectcount = 1
+            //     }
+            //     return Promise.resolve(0);
+            // })
             .then(()=>{
                 return this._watchGameSocket(),
                 t = Mmobay.MConfig.addr,

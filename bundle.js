@@ -8943,7 +8943,7 @@
         }
         onClickAuto() {
             //Fix me
-            
+            this.checkAuto()
             this.checkFreeCat()
             if (!window._generate) {
                 

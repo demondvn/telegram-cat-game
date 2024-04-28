@@ -8945,7 +8945,7 @@
         }
         onClickAuto() {
             //Fix me
-            this.
+            
             
             this.checkFreeCat()
             if (!window._generate) {

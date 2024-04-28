@@ -8959,7 +8959,7 @@
         }
         checkAuto() {
             N.cat.isAuto=true
-            if (N.cat.isAuto && !N.lunch.isLunchDlg) {
+            if (N.cat.isAuto) {
                 let s = this.getSumIndex();
                 if (N.cat.isAuto && this.m_img_RedSpeed?.visible && N.cat.reqSpeed(1).then(()=>{
                     N.event(l.SPEED_FREE),

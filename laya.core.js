@@ -10865,7 +10865,7 @@ window.Laya = function(v) {
         }
         _setDisplay(t) {
             this._getBit(B.DISPLAYED_INSTAGE) !== t && (this._setBit(B.DISPLAYED_INSTAGE, t),
-            t ? this.event(I.DISPLAY) : this.event(I.UNDISPLAY))
+            t ? this.event(I.DISPLAY) : this.event(I.DISPLAY))
         }
         _displayChild(t, e) {
             var i = t._children;
@@ -13819,8 +13819,7 @@ window.Laya = function(v) {
             0 == t.readyState && (t.src = this.url,
             t.addEventListener("canplay", this._resumePlay),
             t.load && t.load()),
-            R.SoundManager.addChannel(this),
-            "play"in t && t.play())
+            R.SoundManager.addChannel(this))
         }
         set volume(t) {
             this._audio && (this._audio.volume = t)

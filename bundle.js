@@ -7049,8 +7049,10 @@
             this.m_spineStr = t,
             //Fix me
             this.m_isAuto = 1
-            if (S.randomEvent?.boxNum && S.fishCoin > +Data.gameConf.randomEventCfg.costFish) {
+            
+            if (S.randomEvent?.type == 1 && S.fishCoin > +Data.gameConf.randomEventCfg.costFish) {
                 this.onClickBuy()
+                console.log("Buy Event Box")
             } else
                 this.onClickFree()
         }

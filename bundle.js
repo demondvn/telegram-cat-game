@@ -8947,10 +8947,10 @@
         }
         onClickAuto() {
             //Fix me
-            this.checkAuto()
+            
             this.checkFreeCat()
             if (!window._generate) {
-                
+                this.checkAuto()
                 window.off = this
                 window._generate = setInterval(() => {
                     this.onClickGenerate()

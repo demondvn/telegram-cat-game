@@ -8942,13 +8942,12 @@
             this.updateAuto(),
             N.cat.isAuto = !0,
             this.ani8.play(0, !0),
-            Laya.timer.loop(500, this, this.checkAuto),
+            // Laya.timer.loop(500, this, this.checkAuto),
             this.checkFreeCat()
         }
         onClickAuto() {
             //Fix me
             
-            this.checkFreeCat()
             if (!window._generate) {
                 this.checkAuto()
                 window.off = this

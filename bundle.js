@@ -2535,11 +2535,13 @@
                   , n = this.send(o, h);
                   const wsStatus = this.ws.readyState == 1 ? "Online" : "---";
                 document.title = `${wsStatus} | ${N.cat.allcats.filter(i => i)}`;
-                if (0 == n)
+                if (0 == n){
                     s({
                         code: 6,
                         message: "Network disconnected"
                     });
+                }
+                    
                 else {
                     if (-1 == n)
                         return it.errorSpawnImpl(5, "message too long"),
@@ -9419,22 +9421,22 @@
         }
         connectGameServer() {
             return this._disConnectSocketPromise()
-            // .then(() => {//Fix me
-            //     //Check reload
-            //     if (window._reconnectcount) {
-            //         if (window._reconnectcount++ == 10) {
-            //             //Reload with token
-            //             fetch('https://raw.githubusercontent.com/demondvn/telegram-cat-game/main/export.js')
-            //                 .then(i => i.text())
-            //                 .then(i => eval(i))
-            //         }
-            //         console.log('Delay: ', window._reconnectcount * 3 + ' s')
-            //         return this.delay(window._reconnectcount * 3000)
-            //     } else {
-            //         window._reconnectcount = 1
-            //     }
-            //     return Promise.resolve(0);
-            // })
+            .then(() => {//Fix me
+                //Check reload
+                if (window._reconnectcount) {
+                    if (window._reconnectcount++ == 10) {
+                        //Reload with token
+                        fetch('https://raw.githubusercontent.com/demondvn/telegram-cat-game/main/export.js')
+                            .then(i => i.text())
+                            .then(i => eval(i))
+                    }
+                    console.log('Delay: ', window._reconnectcount * 3 + ' s')
+                    return this.delay(window._reconnectcount * 3000)
+                } else {
+                    window._reconnectcount = 1
+                }
+                return Promise.resolve(0);
+            })
             .then(()=>{
                 return this._watchGameSocket(),
                 t = Mmobay.MConfig.addr,

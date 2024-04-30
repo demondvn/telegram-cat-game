@@ -963,7 +963,6 @@ window.Laya = function(v) {
             return this._createListener(t, e, i, s, !0)
         }
         _createListener(t, e, i, s, r, a=!0) {
-            return
             a && this.off(t, e, i, r);
             a = $.create(e || this, i, s, r),
             this._events || (this._events = {}),

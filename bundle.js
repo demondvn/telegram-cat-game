@@ -8995,8 +8995,8 @@
                         this.refreshOutPut(),
                         Date.newDate().getTime() / 1e3 - N.cat.airDropTime > +Data.gameConf.initCfg.airdropCatTime + 1 && 11 == N.cat.allcats.filter(t=>!!t).length && (N.cat.reqGetAirDropCat(),
                         Laya.timer.loop(1e3 * +Data.gameConf.initCfg.airdropCatTime + 1e3, N.cat, N.cat.reqGetAirDropCat)),
-                        S.checkRandomBox(),
-                        this.checkAuto()
+                        S.checkRandomBox()
+                        // this.checkAuto()
                         
                     }
                     )

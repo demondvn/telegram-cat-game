@@ -8959,6 +8959,7 @@
                     N.cat.buyAuto=1
                     this.checkAuto()
                     S.checkRandomBox()
+                    this.checkFreeCat()
                     this.checkShowRandomEvent(1)
                 },30 * 1000)
 

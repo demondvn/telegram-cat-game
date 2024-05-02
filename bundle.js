@@ -6932,6 +6932,7 @@
         constructor(t) {
             super(),
             this.m_off = t
+            this.onClickFree()
         }
         onAwake() {
             super.onAwake(),

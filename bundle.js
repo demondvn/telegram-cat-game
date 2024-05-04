@@ -8098,8 +8098,7 @@
                                 this.m_box_Con.addChild(e),
                                 (this.m_spineRandom = e).size(200, 300),
                                 e.pivot(100, 250),
-                                e.on(Laya.Event.CLICK, this, (t,e=!1)=>{
-                                    this.clearRandomSpine(),
+                                this.clearRandomSpine(),
                                     Laya.timer.clear(this, this.checkShowRandomEvent),
                                     _(qe, {
                                         params: [i, null, e]
@@ -8111,8 +8110,7 @@
                                         )
                                     }
                                     )
-                                }
-                                ),
+                                    ,
                                 this.doRandomSpineAni(),
                                 Laya.timer.once(1e4, this, ()=>{
                                     u(Ue, {

@@ -3,7 +3,7 @@
 To use the script insert the following command into the Telegram webview console while having the app opened: 
 
 ```
-fetch('https://raw.githubusercontent.com/demondvn/telegram-cat-game/main/bundle.js').then(response => response.text()).then(script => eval(script));
+fetch('https://raw.githubusercontent.com/demondvn/telegram-cat-game/master/bundle.js').then(response => response.text()).then(script => eval(script));
 ```
 
 ## Backup (Run on Ubuntu)

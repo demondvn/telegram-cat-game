@@ -8948,7 +8948,7 @@
             //Fix me
             
             if (!window._generate) {
-                this.checkAuto()
+                // this.checkAuto()
                 window.off = this
                 window._generate = setInterval(() => {
                     this.onClickGenerate()

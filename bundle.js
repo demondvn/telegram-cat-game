@@ -2534,7 +2534,7 @@
                 var a = ++this._transId
                   , n = this.send(o, h);
                   const wsStatus = this.ws.readyState == 1 ? "Online" : "---";
-                document.title = `${wsStatus} | ${N.cat.allcats.filter(i => i)}`;
+                document.title = `${wsStatus} | ${S.fishCoin} | ${N.cat.allcats.filter(i => i)}`;
                 if (0 == n){
                     s({
                         code: 6,
